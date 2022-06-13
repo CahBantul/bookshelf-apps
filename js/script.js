@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener(SAVED_EVENT, () => {
-  alert('Data berhasil di simpan.');
+  console.log('Data berhasil di simpan.');
 });
 
 document.addEventListener(RENDER_EVENT, function () {
