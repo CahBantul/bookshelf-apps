@@ -7,17 +7,6 @@ const inputSearchBookTitle = document.querySelector('#searchBookTitle');
 const uncompletedBookList = document.getElementById('incompleteBookshelfList');
 const listCompleted = document.getElementById('completeBookshelfList');
 
-/**
- * [
- *   {
-  id: 3657848524,
-  title: 'Harry Potter and the Philosopher\'s Stone',
-  author: 'J.K Rowling',
-  year: 1997,
-  isComplete: false,
-}
- * ]
- */
 const books = [];
 const RENDER_EVENT = 'render-book';
 const SAVED_EVENT = 'saved-book';
@@ -140,7 +129,9 @@ function makeBook(bookObject) {
   const trashButton = document.createElement('button');
   trashButton.classList.add('red');
   trashButton.addEventListener('click', function () {
-    removeBook(id);
+    const remove = confirm('anda yakin?');
+    if (remove) removeBook(id);
+    return;
   });
   trashButton.innerText = 'Hapus buku';
 
@@ -213,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener(SAVED_EVENT, () => {
-  console.log('Data berhasil di simpan.');
+  alert('Data berhasil di simpan.');
 });
 
 document.addEventListener(RENDER_EVENT, function () {
@@ -237,13 +228,6 @@ function findBookTitle(title) {
   });
 
   return filteredBooks;
-
-  // for (const bookItem of books) {
-  //   if (bookItem.title.toLowerCase().search(title.toLowerCase())) {
-  //     return bookItem;
-  //   }
-  // }
-  // return null;
 }
 
 inputSearchBookTitle.addEventListener('keyup', (event) => {
